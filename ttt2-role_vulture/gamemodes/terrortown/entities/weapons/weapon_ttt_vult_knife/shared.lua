@@ -25,7 +25,7 @@ SWEP.UseHands               = true
 SWEP.ViewModel              = "models/weapons/cstrike/c_knife_t.mdl"
 SWEP.WorldModel             = "models/weapons/w_knife_t.mdl"
 
-SWEP.Primary.Damage         = 0 -- this does not matter damage is dealt later
+SWEP.Primary.Damage         = 0 -- this does not matter damage is dealt later since I override the primary attack function
 SWEP.Primary.ClipSize       = -1
 SWEP.Primary.DefaultClip    = -1
 SWEP.Primary.Automatic      = true
@@ -33,7 +33,7 @@ SWEP.Primary.Delay          = 1
 SWEP.Primary.Ammo           = "none"
 
 SWEP.Kind                   = WEAPON_CLASS
-SWEP.CanBuy                 = {ROLE_TRAITOR} -- only traitors can buy
+SWEP.CanBuy                 = {} -- nobody can buy
 SWEP.LimitedStock           = true -- only buyable once
 SWEP.AllowDrop              = false -- Is the player able to drop the swep
 
