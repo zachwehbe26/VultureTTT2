@@ -1,0 +1,2 @@
+-- convar for how many bodies he needs to eat
+-- convar for how much damage his knife does
