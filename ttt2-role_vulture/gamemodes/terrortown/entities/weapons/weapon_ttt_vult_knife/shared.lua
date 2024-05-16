@@ -25,7 +25,7 @@ SWEP.UseHands               = true
 SWEP.ViewModel              = "models/weapons/cstrike/c_knife_t.mdl"
 SWEP.WorldModel             = "models/weapons/w_knife_t.mdl"
 
-SWEP.Primary.Damage         = 0 -- this does not matter damage is dealt later since I override the primary attack function
+SWEP.Primary.Damage         = 34
 SWEP.Primary.ClipSize       = -1
 SWEP.Primary.DefaultClip    = -1
 SWEP.Primary.Automatic      = true
@@ -33,7 +33,7 @@ SWEP.Primary.Delay          = 1
 SWEP.Primary.Ammo           = "none"
 
 SWEP.Kind                   = WEAPON_CLASS
-SWEP.CanBuy                 = {} -- nobody can buy
+SWEP.CanBuy                 = {ROLE_TRAITOR} -- only traitors can buy
 SWEP.LimitedStock           = true -- only buyable once
 SWEP.AllowDrop              = false -- Is the player able to drop the swep
 
@@ -131,7 +131,17 @@ function SWEP:PrimaryAttack()
       end
       if hitEnt:IsPlayer() then
          -- deal some damage to the target RAHHHH
-         hitEnt:TakeDamage(34, self:GetOwner(), knife)
+         local dmg = DamageInfo()
+         dmg:SetDamage(self.Primary.Damage)
+         dmg:SetAttacker(self:GetOwner())
+         dmg:SetInflictor(self)
+         dmg:SetDamageForce(self:GetOwner():GetAimVector() * 5)
+         dmg:SetDamagePosition(self:GetOwner():GetPos())
+         dmg:SetDamageType(DMG_SLASH)
+
+         hitEnt:DispatchTraceAttack(dmg, spos + (self:GetOwner():GetAimVector() * 3), sdest)
+         
+         -- make a special sound
          EmitSound( "npc/fast_zombie/claw_strike2.wav", self:GetOwner():GetPos() )
 
       end
