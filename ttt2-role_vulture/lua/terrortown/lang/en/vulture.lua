@@ -15,4 +15,5 @@ The vulture is also able to see bodies throughout the map.]]
 --Other Role Language Strings Go Here
 -- Like when the vulture eats a body and is brodcasted to other players
 -- Or when the vulture heals from eating a body
-L["vulture_knife_name"] = "Vulture Talon"
+L["vult_knife_name"] = "Vulture Talon"
+L["vult_corpse_player"] = "Delicious corpse of {nick}. Come eat it!"
