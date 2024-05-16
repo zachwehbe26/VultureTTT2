@@ -17,3 +17,4 @@ The vulture is also able to see bodies throughout the map.]]
 -- Or when the vulture heals from eating a body
 L["vult_knife_name"] = "Vulture Talon"
 L["vult_corpse_player"] = "Delicious corpse of {nick}. Come eat it!"
+L["EVENT_VULT_CONSUME"] = "The Vulture has consumed a body!"
