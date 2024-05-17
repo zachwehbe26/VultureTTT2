@@ -16,7 +16,7 @@ table.insert(tbl[ROLE_VULTURE], {
       min = 2,
       max = 16,
       decimal = 0,
-      desc = "ttt2_vult_consumed_bodies_win_threshold (def. 4)"
+      desc = "ttt2_vult_consumed_bodies_win_threshold (def. 6)"
 })
 
 table.insert(tbl[ROLE_VULTURE], {
