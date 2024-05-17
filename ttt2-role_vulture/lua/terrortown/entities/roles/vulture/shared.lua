@@ -18,7 +18,7 @@ function ROLE:PreInitialize()
     self.preventFindCredits         = true
     self.preventKillCredits         = true
     self.preventTraitorAloneCredits = true
-    self.preventWin                 = true
+    self.preventWin                 = false -- Can he win on his own? true means NO, false means YES
     self.unknownTeam                = false
 
     self.defaultTeam                = TEAM_VULTURE
