@@ -28,7 +28,7 @@ SWEP.UseHands               = true
 SWEP.ViewModel              = "models/weapons/cstrike/c_knife_t.mdl"
 SWEP.WorldModel             = "models/weapons/w_knife_t.mdl"
 
-SWEP.Primary.Damage         = 34
+SWEP.Primary.Damage         = GetConVar("ttt2_vult_talon_damage"):GetInt()
 SWEP.Primary.ClipSize       = -1
 SWEP.Primary.DefaultClip    = -1
 SWEP.Primary.Automatic      = true
@@ -103,8 +103,9 @@ function SWEP:PrimaryAttack()
 
          -- if he hits a body he heals
          -- make sure health does not go above max
-         if self:GetOwner():Health() + 30 < self:GetOwner():GetMaxHealth() then
-            self:GetOwner():SetHealth(self:GetOwner():Health() + 30)
+         local healing = GetConVar("ttt2_vult_talon_healing"):GetInt()
+         if self:GetOwner():Health() + healing < self:GetOwner():GetMaxHealth() then
+            self:GetOwner():SetHealth(self:GetOwner():Health() + healing)
          else
             self:GetOwner():SetHealth(self:GetOwner():GetMaxHealth())
          end
