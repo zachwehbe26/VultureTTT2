@@ -1,6 +1,7 @@
 if SERVER then
 	AddCSLuaFile()
 	resource.AddFile("materials/vgui/ttt/icon_vult_talon.vmt")
+	
 end
 
 SWEP.HoldType               = "knife"
@@ -11,7 +12,7 @@ if CLIENT then
    SWEP.ViewModelFlip       = false
    SWEP.ViewModelFOV        = 90
    SWEP.DrawCrosshair       = false
-
+	
    SWEP.EquipMenuData = {
       type = "item_weapon",
       desc = "Eat bodies to destroy evidence and restore health. Also functions as a weaker version of the Traitor knife."
@@ -87,10 +88,8 @@ function SWEP:PrimaryAttack()
    if SERVER then
       self:GetOwner():SetAnimation( PLAYER_ATTACK1 )
    end
-
-
    if SERVER and tr.Hit and tr.HitNonWorld and IsValid(hitEnt) then
-      if hitEnt:GetClass() == "prop_ragdoll" then
+      if hitEnt:GetClass() == "prop_ragdoll" and not timer.Exists("ttt2_vult_talon_cooldown") then
          -- if he hits a body it plays a sound to alert those nearby
          EmitSound( "npc/fast_zombie/claw_strike1.wav", self:GetOwner():GetPos() )
 
@@ -132,7 +131,12 @@ function SWEP:PrimaryAttack()
 		 
 		   --runs hook that will increase bodies by one when the vulture consumes one
 		 hook.Run("EVENT_VULT_CONSUME", 1)
+		 --Start a timer.
+		 timer.Create("ttt2_vult_talon_cooldown",15,1,function()
+			 self:GetOwner():PrintMessage( HUD_PRINTTALK, "The Consume Cooldown Has Ended!")
+		 end)
 	end
+end
       if hitEnt:IsPlayer() then
          -- deal some damage to the target RAHHHH
          local dmg = DamageInfo()
@@ -148,8 +152,7 @@ function SWEP:PrimaryAttack()
          -- make a special sound
          EmitSound( "npc/fast_zombie/claw_strike2.wav", self:GetOwner():GetPos() )
 
-      end
-   end
+    end
 
    self:GetOwner():LagCompensation(false)
 end

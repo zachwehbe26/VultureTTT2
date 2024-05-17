@@ -15,6 +15,15 @@ local function incVultCounter(a)
     end
 end
 
+--The deputy uses some sort of status to get the timer next to a png like a gun or in this case, a vulture.
+--But I don't think this is in normal glua, and doesn't exist outside of the source code(seriously try googling it)
+--hook.Add("Initialize", "ttt2_vult_init", function()
+--		STATUS:RegisterStatus("ttt2_vult_cooldown_stat", {
+--			hud = Material("vgui/ttt/icons/vult.png"),
+--			type = "bad"
+--			})
+--end)
+
 -- reset hooks at round end
 hook.Add("TTTEndRound", "VultureEndRound", function()
 	roles.VULTURE.shouldWin = false
