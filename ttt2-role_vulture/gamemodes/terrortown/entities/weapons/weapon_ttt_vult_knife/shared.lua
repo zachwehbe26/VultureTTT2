@@ -138,7 +138,7 @@ function SWEP:PrimaryAttack()
       if hitEnt:IsPlayer() then
          -- deal some damage to the target RAHHHH
          local dmg = DamageInfo()
-         dmg:SetDamage(self.Primary.Damage)
+         dmg:SetDamage(GetConVar("ttt2_vult_talon_damage"):GetInt())
          dmg:SetAttacker(self:GetOwner())
          dmg:SetInflictor(self)
          dmg:SetDamageForce(self:GetOwner():GetAimVector() * 5)
