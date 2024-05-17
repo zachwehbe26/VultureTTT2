@@ -1,4 +1,3 @@
-
 if SERVER then
 	AddCSLuaFile()
     resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_vult.vmt")
@@ -19,7 +18,7 @@ function ROLE:PreInitialize()
     self.preventFindCredits         = true
     self.preventKillCredits         = true
     self.preventTraitorAloneCredits = true
-    self.preventWin                 = false
+    self.preventWin                 = true
     self.unknownTeam                = false
 
     self.defaultTeam                = TEAM_VULTURE
@@ -34,6 +33,15 @@ function ROLE:PreInitialize()
 end
 
 if SERVER then
+    -- HANDLE WINNING HOOK
+	hook.Add("TTTCheckForWin", "VultureCheckWin", function()
+		if roles.VULTURE.shouldWin then
+			roles.VULTURE.shouldWin = false
+
+			return TEAM_VULTURE
+		end
+	end)
+
 	-- Add the wallhacks on dead bodies
 	hook.Add("TTTOnCorpseCreated", "VultAddedDeadBody", function(rag, ply)
 		if not IsValid(rag) or not IsValid(ply) then return end
@@ -62,6 +70,7 @@ if SERVER then
 	end
 end
 
+-- actual wallhacks part
 if CLIENT then
 	local TryT = LANG.TryTranslation
 	local ParT = LANG.GetParamTranslation
@@ -85,4 +94,43 @@ if CLIENT then
 		mvData:AddDescriptionLine(ParT("marker_vision_distance", {distance = distance}))
 		mvData:AddDescriptionLine(TryT(mvObject:GetVisibleForTranslationKey()), COLOR_SLATEGRAY)
 	end)
+end
+
+-- adding convars to the TTT2 menu
+if CLIENT then
+    function ROLE:AddToSettingsMenu(parent)
+        local form = vgui.CreateTTT2Form(parent, "header_roles_additional")
+		
+        form:MakeSlider({
+            serverConvar = "ttt2_vult_consumed_bodies_win_threshold",
+            label = "label_vult_consumed_bodies_win_threshold",
+            min = 2,
+            max = 16,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_talon_damage",
+            label = "label_vult_talon_damage",
+            min = 1,
+            max = 100,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_talon_healing",
+            label = "label_vult_talon_healing",
+            min = 1,
+            max = 100,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_digestion_time",
+            label = "label_vult_digestion_time",
+            min = 5,
+            max = 120,
+            decimal = 0,
+        })
+    end
 end
