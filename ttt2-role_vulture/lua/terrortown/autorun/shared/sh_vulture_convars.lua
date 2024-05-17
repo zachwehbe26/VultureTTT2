@@ -7,6 +7,9 @@ CreateConVar("ttt2_vult_talon_healing", 100, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for his digestion timer
 CreateConVar("ttt2_vult_digestion_time", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
+hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicVultureCVars", function(tbl)
+  tbl[ROLE_VULTURE] = tbl[ROLE_VULTURE] or {}
+
 table.insert(tbl[ROLE_VULTURE], {
       cvar = "ttt2_vult_consumed_bodies_win_threshold",
       slider = true,
