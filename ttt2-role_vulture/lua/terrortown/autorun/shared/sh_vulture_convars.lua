@@ -1,5 +1,5 @@
--- convar for how many bodies he needs to eat -- TODO!!!!!!!!!!!!!!!!!!!!!!!!
-CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 2, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+-- convar for how many bodies he needs to eat
+CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 6, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much damage his knife does
 CreateConVar("ttt2_vult_talon_damage", 34, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much health he gains after eating a body
