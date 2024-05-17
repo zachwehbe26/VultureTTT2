@@ -1,4 +1,3 @@
-
 if SERVER then
 	AddCSLuaFile()
     resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_vult.vmt")
@@ -62,6 +61,7 @@ if SERVER then
 	end
 end
 
+-- actual wallhacks part
 if CLIENT then
 	local TryT = LANG.TryTranslation
 	local ParT = LANG.GetParamTranslation
@@ -86,3 +86,41 @@ if CLIENT then
 		mvData:AddDescriptionLine(TryT(mvObject:GetVisibleForTranslationKey()), COLOR_SLATEGRAY)
 	end)
 end
+
+-- adding convars to the TTT2 menu
+if CLIENT then
+    function ROLE:AddToSettingsMenu(parent)
+        local form = vgui.CreateTTT2Form(parent, "header_roles_additional")
+		
+        form:MakeSlider({
+            serverConvar = "ttt2_vult_consumed_bodies_win_threshold",
+            label = "label_vult_consumed_bodies_win_threshold",
+            min = 2,
+            max = 16,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_talon_damage",
+            label = "label_vult_talon_damage",
+            min = 1,
+            max = 100,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_talon_healing",
+            label = "label_vult_talon_healing",
+            min = 1,
+            max = 100,
+            decimal = 0,
+        })
+
+		form:MakeSlider({
+            serverConvar = "ttt2_vult_digestion_time",
+            label = "label_vult_digestion_time",
+            min = 5,
+            max = 120,
+            decimal = 0,
+        })
+    end

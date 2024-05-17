@@ -15,6 +15,10 @@ The vulture is also able to see bodies throughout the map.]]
 --Other Role Language Strings Go Here
 -- Like when the vulture eats a body and is brodcasted to other players
 -- Or when the vulture heals from eating a body
-L["vult_knife_name"] = "Vulture Talon"
-L["vult_corpse_player"] = "Delicious corpse of {nick}. Come eat it!"
-L["EVENT_VULT_CONSUME"] = "The Vulture has consumed a body!"
+L["vult_knife_name"]    = "Vulture Talon"
+L["vult_corpse_player"] = "{nick}'s delicious corpse."
+-- Convar strings
+L["label_vult_consumed_bodies_win_threshold"] = "Threshold to reach, resulting in a Vulture Victory: "
+L["label_vult_talon_damage"]                  = "How much damage the Vulture Talon does: "
+L["label_vult_talon_healing"]                 = "How much healing the Vulture Talon gives after eating a body: "
+L["label_vult_digestion_time"]                = "How much time the player has to wait before they can eat another body: "

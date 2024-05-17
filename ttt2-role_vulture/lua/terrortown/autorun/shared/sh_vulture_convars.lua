@@ -45,3 +45,4 @@ table.insert(tbl[ROLE_VULTURE], {
       decimal = 0,
       desc = "ttt2_vult_digestion_time (def. 15)"
 })
+end)
