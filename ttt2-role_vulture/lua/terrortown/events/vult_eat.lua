@@ -1,5 +1,5 @@
 if CLIENT then
-    EVENT.icon = Material("vgui/ttt/dynamic/roles/icon_mes.vmt")
+    EVENT.icon = Material("vgui/ttt/dynamic/roles/icon_vult.vmt")
     EVENT.title = "EVENT_VULT_CONSUME"
 end
 
