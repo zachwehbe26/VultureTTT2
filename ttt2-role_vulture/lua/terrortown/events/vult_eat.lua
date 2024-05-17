@@ -27,10 +27,17 @@ local function incVultCounter(a)
 end
 
 
--- reset hooks at round end
+-- reset hooks at round end AND start
 hook.Add("TTTEndRound", "VultureEndRound", function()
 	roles.VULTURE.shouldWin = false
     VULTURE_DATA.amount_eaten = 0
+	print("Round over!!!!!")
+end)
+
+hook.Add("TTTBeginRound", "VultureBeginRound", function()
+	roles.VULTURE.shouldWin = false
+    VULTURE_DATA.amount_eaten = 0
+	print("Round begin!!!!!")
 end)
 
 --hook that will increase bodies consumed by one
