@@ -1,9 +1,9 @@
 -- convar for how many bodies he needs to eat -- TODO!!!!!!!!!!!!!!!!!!!!!!!!
 CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 2, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much damage his knife does
-CreateConVar("ttt2_vult_talon_damage", 100, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_talon_damage", 34, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much health he gains after eating a body
-CreateConVar("ttt2_vult_talon_healing", 100, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_talon_healing", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for his digestion timer -- TODO!!!!!!!!!!!!!!!!!!!!!!!!
 CreateConVar("ttt2_vult_digestion_time", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
