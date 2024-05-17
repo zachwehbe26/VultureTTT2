@@ -5,7 +5,7 @@ end
 --Function that increases bodies consumed by 1
 local function incVultCounter(a)
     local currentBodiesEaten = a + 1
-    if(a >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt())
+    if(currentBodiesEaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
         print("Vulture wins")
     end
     return currentBodiesEaten
