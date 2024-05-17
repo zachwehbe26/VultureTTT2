@@ -44,7 +44,8 @@ SWEP.IsSilent               = true
 
 -- Pull out faster than standard guns
 SWEP.DeploySpeed            = 2
-local vultCounter = 0
+
+-- Override original primary attack
 function SWEP:PrimaryAttack()
    self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
 
@@ -130,10 +131,8 @@ function SWEP:PrimaryAttack()
          -- then delete body cus he eats it
          hitEnt:Remove()
 		 
-		 --runs hook that will increase bodies by one when the vulture consumes one
-		 vultCounter = hook.Run("EVENT_VULT_CONSUME",vultCounter)
-		 --Prints to the console how many bodies the vulture consumed
-         print("Vulture has consumed a body:",vultCounter)
+		   --runs hook that will increase bodies by one when the vulture consumes one
+		   hook.Run("EVENT_VULT_CONSUME", 1)
       end
       if hitEnt:IsPlayer() then
          -- deal some damage to the target RAHHHH

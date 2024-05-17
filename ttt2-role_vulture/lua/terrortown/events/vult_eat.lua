@@ -3,19 +3,21 @@ if CLIENT then
     EVENT.title = "EVENT_VULT_CONSUME"
 end
 
---Function that increases bodies consumed by 1
+--Function that increases bodies consumed by 'a'
 local function incVultCounter(a)
-    local currentBodiesEaten = a + 1
-    if(currentBodiesEaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
+    VULTURE_DATA.amount_eaten = VULTURE_DATA.amount_eaten + a
+    print("Current:", VULTURE_DATA.amount_eaten)
+    if(VULTURE_DATA.amount_eaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
         roles.VULTURE.shouldWin = true
-        print("VULTURE WIN DEBUG")
+        VULTURE_DATA.amount_eaten = 0
+        print("New current:", VULTURE_DATA.amount_eaten)
     end
-    return currentBodiesEaten
 end
 
 -- reset hooks at round end
 hook.Add("TTTEndRound", "VultureEndRound", function()
 	roles.VULTURE.shouldWin = false
+    VULTURE_DATA.amount_eaten = 0
 end)
 
 --hook that will increase bodies consumed by one
