@@ -22,3 +22,4 @@ L["label_vult_consumed_bodies_win_threshold"] = "Threshold to reach, resulting i
 L["label_vult_talon_damage"]                  = "How much damage the Vulture Talon does: "
 L["label_vult_talon_healing"]                 = "How much healing the Vulture Talon gives after eating a body: "
 L["label_vult_digestion_time"]                = "How much time the player has to wait before they can eat another body: "
+L["label_vult_consume_notification"]          = "The Vulture Has Consumed A Body!"

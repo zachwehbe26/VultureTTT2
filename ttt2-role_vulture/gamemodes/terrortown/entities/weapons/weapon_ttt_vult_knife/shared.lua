@@ -1,7 +1,6 @@
 if SERVER then
 	AddCSLuaFile()
 	resource.AddFile("materials/vgui/ttt/icon_vult_talon.vmt")
-	local vultCounter = 0
 end
 
 SWEP.HoldType               = "knife"
@@ -132,8 +131,8 @@ function SWEP:PrimaryAttack()
          hitEnt:Remove()
 		 
 		   --runs hook that will increase bodies by one when the vulture consumes one
-		   hook.Run("EVENT_VULT_CONSUME", 1)
-      end
+		 hook.Run("EVENT_VULT_CONSUME", 1)
+	end
       if hitEnt:IsPlayer() then
          -- deal some damage to the target RAHHHH
          local dmg = DamageInfo()

@@ -18,7 +18,7 @@ function ROLE:PreInitialize()
     self.preventFindCredits         = true
     self.preventKillCredits         = true
     self.preventTraitorAloneCredits = true
-    self.preventWin                 = true
+    self.preventWin                 = false
     self.unknownTeam                = false
 
     self.defaultTeam                = TEAM_VULTURE

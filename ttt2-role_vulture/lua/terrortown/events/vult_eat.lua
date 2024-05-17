@@ -7,7 +7,8 @@ end
 local function incVultCounter(a)
     VULTURE_DATA.amount_eaten = VULTURE_DATA.amount_eaten + a
     print("Current:", VULTURE_DATA.amount_eaten)
-    if(VULTURE_DATA.amount_eaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
+    LANG.MsgAll("label_vult_consume_notification",nil,MSG_MSTACK_WARN)
+	if(VULTURE_DATA.amount_eaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
         roles.VULTURE.shouldWin = true
         VULTURE_DATA.amount_eaten = 0
         print("New current:", VULTURE_DATA.amount_eaten)
