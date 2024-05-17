@@ -18,7 +18,7 @@ function ROLE:PreInitialize()
     self.preventFindCredits         = true
     self.preventKillCredits         = true
     self.preventTraitorAloneCredits = true
-    self.preventWin                 = false
+    self.preventWin                 = true
     self.unknownTeam                = false
 
     self.defaultTeam                = TEAM_VULTURE
@@ -33,6 +33,15 @@ function ROLE:PreInitialize()
 end
 
 if SERVER then
+    -- HANDLE WINNING HOOK
+	hook.Add("TTTCheckForWin", "VultureCheckWin", function()
+		if roles.VULTURE.shouldWin then
+			roles.VULTURE.shouldWin = false
+
+			return TEAM_VULTURE
+		end
+	end)
+
 	-- Add the wallhacks on dead bodies
 	hook.Add("TTTOnCorpseCreated", "VultAddedDeadBody", function(rag, ply)
 		if not IsValid(rag) or not IsValid(ply) then return end
