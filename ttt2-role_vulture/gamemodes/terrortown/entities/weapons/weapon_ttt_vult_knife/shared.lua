@@ -78,8 +78,32 @@ function SWEP:PrimaryAttack()
       edata:SetNormal(tr.Normal)
       edata:SetEntity(hitEnt)
 
-      if hitEnt:IsPlayer() or hitEnt:GetClass() == "prop_ragdoll" then
+      // if the entity he hit was a ragdoll
+      if hitEnt:GetClass() == "prop_ragdoll" then
+         -- if he hits a body spawn blood
          util.Effect("BloodImpact", edata)
+
+         -- if he hits a body it plays a sound to alert those nearby
+         EmitSound( "npc/fast_zombie/claw_strike1.wav", self:GetOwner():GetPos() )
+      end
+      // if the entity he hit was a player
+      if hitEnt:IsPlayer() then
+         -- if he hits a body spawn blood
+         util.Effect("BloodImpact", edata)
+
+         -- deal some damage to the target RAHHHH
+         local dmg = DamageInfo()
+         dmg:SetDamage(GetConVar("ttt2_vult_talon_damage"):GetInt())
+         dmg:SetAttacker(self:GetOwner())
+         dmg:SetInflictor(self)
+         dmg:SetDamageForce(self:GetOwner():GetAimVector() * 5)
+         dmg:SetDamagePosition(self:GetOwner():GetPos())
+         dmg:SetDamageType(DMG_SLASH)
+
+         hitEnt:DispatchTraceAttack(dmg, spos + (self:GetOwner():GetAimVector() * 3), sdest)
+         
+         -- make a special sound
+         EmitSound( "npc/fast_zombie/claw_strike2.wav", self:GetOwner():GetPos() )
       end
    else
       self:SendWeaponAnim( ACT_VM_MISSCENTER )
@@ -90,9 +114,6 @@ function SWEP:PrimaryAttack()
    end
    if SERVER and tr.Hit and tr.HitNonWorld and IsValid(hitEnt) then
       if hitEnt:GetClass() == "prop_ragdoll" and not timer.Exists("ttt2_vult_talon_cooldown") then
-         -- if he hits a body it plays a sound to alert those nearby
-         EmitSound( "npc/fast_zombie/claw_strike1.wav", self:GetOwner():GetPos() )
-
          -- make sure the body is that of a player not a map ragdoll or whatever
          local corpsePlayer = CORPSE.GetPlayer(hitEnt)
 		   if not IsValid(corpsePlayer) then
@@ -130,33 +151,16 @@ function SWEP:PrimaryAttack()
          hitEnt:Remove()
 		 
 		   --runs hook that will increase bodies by one when the vulture consumes one
-		 hook.Run("EVENT_VULT_CONSUME", 1)
+		   hook.Run("EVENT_VULT_CONSUME", 1)
 		 
-		 --Start the digestion timer
-		 STATUS:AddTimedStatus(self:GetOwner(), "ttt2_vult_cooldown_stat", GetConVar("ttt2_vult_digestion_time"):GetInt(), true)
-       consumeStr = "Bodies Eaten: " .. tostring(VULTURE_DATA.amount_eaten)
-       self:GetOwner():PrintMessage( HUD_PRINTTALK, consumeStr)
-		 timer.Create("ttt2_vult_talon_cooldown", GetConVar("ttt2_vult_digestion_time"):GetInt(), 1, function()
-			 self:GetOwner():PrintMessage( HUD_PRINTTALK, "label_vult_consume_cooldown")
-		 end)
-	end
-end
-      if hitEnt:IsPlayer() then
-         -- deal some damage to the target RAHHHH
-         local dmg = DamageInfo()
-         dmg:SetDamage(GetConVar("ttt2_vult_talon_damage"):GetInt())
-         dmg:SetAttacker(self:GetOwner())
-         dmg:SetInflictor(self)
-         dmg:SetDamageForce(self:GetOwner():GetAimVector() * 5)
-         dmg:SetDamagePosition(self:GetOwner():GetPos())
-         dmg:SetDamageType(DMG_SLASH)
-
-         hitEnt:DispatchTraceAttack(dmg, spos + (self:GetOwner():GetAimVector() * 3), sdest)
-         
-         -- make a special sound
-         EmitSound( "npc/fast_zombie/claw_strike2.wav", self:GetOwner():GetPos() )
-
-    end
-
+		   --Start the digestion timer
+		   STATUS:AddTimedStatus(self:GetOwner(), "ttt2_vult_cooldown_stat", GetConVar("ttt2_vult_digestion_time"):GetInt(), true)
+         consumeStr = "Bodies Eaten: " .. tostring(VULTURE_DATA.amount_eaten)
+         self:GetOwner():PrintMessage( HUD_PRINTTALK, consumeStr)
+		   timer.Create("ttt2_vult_talon_cooldown", GetConVar("ttt2_vult_digestion_time"):GetInt(), 1, function()
+			   self:GetOwner():PrintMessage( HUD_PRINTTALK, "label_vult_consume_cooldown")
+		   end)
+	   end
+   end
    self:GetOwner():LagCompensation(false)
 end

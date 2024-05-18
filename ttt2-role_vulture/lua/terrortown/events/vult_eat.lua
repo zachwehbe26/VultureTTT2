@@ -14,15 +14,13 @@ if CLIENT then
 	end)
 end
 
---Function that increases bodies consumed by 'a'
-local function incVultCounter(a)
-    VULTURE_DATA.amount_eaten = VULTURE_DATA.amount_eaten + a
-    print("Currently you ate this many bodies:", VULTURE_DATA.amount_eaten)
-    LANG.MsgAll("label_vult_consume_notification",nil,MSG_MSTACK_WARN)
+--Function that increases bodies consumed
+local function incVultCounter()
+    VULTURE_DATA:AddEaten()
+    LANG.MsgAll("label_vult_consume_notification", nil, MSG_MSTACK_WARN)
 	if(VULTURE_DATA.amount_eaten >= GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()) then
         roles.VULTURE.shouldWin = true
         VULTURE_DATA.amount_eaten = 0
-        print("Bodies eaten reset to:", VULTURE_DATA.amount_eaten)
     end
 end
 
@@ -31,13 +29,11 @@ end
 hook.Add("TTTEndRound", "VultureEndRound", function()
 	roles.VULTURE.shouldWin = false
     VULTURE_DATA.amount_eaten = 0
-	print("Round over!!!!!")
 end)
 
 hook.Add("TTTBeginRound", "VultureBeginRound", function()
 	roles.VULTURE.shouldWin = false
     VULTURE_DATA.amount_eaten = 0
-	print("Round begin!!!!!")
 end)
 
 --hook that will increase bodies consumed by one
