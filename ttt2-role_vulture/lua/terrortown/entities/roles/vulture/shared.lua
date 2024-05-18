@@ -18,11 +18,11 @@ function ROLE:PreInitialize()
     self.preventFindCredits         = true
     self.preventKillCredits         = true
     self.preventTraitorAloneCredits = true
-    self.preventWin                 = false
+    self.preventWin                 = false -- Can he win on his own? true means NO, false means YES
     self.unknownTeam                = false
 
     self.defaultTeam                = TEAM_VULTURE
-
+	
     self.conVarData = {
         pct          = 0.15, -- necessary: percentage of getting this role selected (per player)
         maximum      = 1, -- maximum amount of roles in a round
@@ -31,7 +31,6 @@ function ROLE:PreInitialize()
         random       = 33
     }
 end
-
 if SERVER then
     -- HANDLE WINNING HOOK
 	hook.Add("TTTCheckForWin", "VultureCheckWin", function()
@@ -45,7 +44,6 @@ if SERVER then
 	-- Add the wallhacks on dead bodies
 	hook.Add("TTTOnCorpseCreated", "VultAddedDeadBody", function(rag, ply)
 		if not IsValid(rag) or not IsValid(ply) then return end
-
 		local mvObject = rag:AddMarkerVision("corpse_vult")
 		mvObject:SetOwner(ROLE_VULTURE)
 		mvObject:SetVisibleFor(VISIBLE_FOR_ROLE)
@@ -69,7 +67,10 @@ if SERVER then
 		ply:StripWeapon("weapon_ttt_vult_knife")
 	end
 end
-
+if CLIENT then
+	local client = LocalPlayer()
+	STATUS:AddStatus(client,"ttt2_display_consume_hud")
+end
 -- actual wallhacks part
 if CLIENT then
 	local TryT = LANG.TryTranslation
