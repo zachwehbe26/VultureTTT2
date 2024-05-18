@@ -70,7 +70,7 @@ if CLIENT then -- CLIENT
 		color.a = 175
 		draw.FilteredShadowedTexture(x + 8 * self.scale, y + 5 * self.scale, 30 * self.scale, 30 * self.scale, self.vulture_icon, color.a, color, self.scale)
 
-		local amnt_print = tostring(VULTURE_DATA:GetEatenAmount()) .. " / " .. tostring(GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt())
+		local amnt_print = tostring(VULTURE_DATA:GetEatenAmount()) .. " / " .. tostring(VULTURE_DATA:GetAmountToWin())
 		draw.AdvancedText(amnt_print, "PureSkinBar", x + 46 * self.scale, y + 9 * self.scale, color, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, true, self.scale)
 
 		-- draw border and shadow
