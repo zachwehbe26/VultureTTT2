@@ -36,14 +36,17 @@ SWEP.Primary.Delay          = 1
 SWEP.Primary.Ammo           = "none"
 
 SWEP.Kind                   = WEAPON_CLASS
-SWEP.CanBuy                 = {ROLE_TRAITOR} -- only traitors can buy
-SWEP.LimitedStock           = true -- only buyable once
 SWEP.AllowDrop              = false -- Is the player able to drop the swep
 
 SWEP.IsSilent               = true
 
 -- Pull out faster than standard guns
 SWEP.DeploySpeed            = 2
+
+--Removes the Talon on death or drop
+function SWEP:OnDrop()
+	self:Remove()
+end
 
 -- Override original primary attack
 function SWEP:PrimaryAttack()
