@@ -11,7 +11,7 @@ if CLIENT then -- CLIENT
 		minsize = {w = 110, h = 40}
 	}
 
-	HUDELEMENT.vulture_icon = Material("vgui/ttt/icons/digesting_icon.png")
+	HUDELEMENT.vulture_icon = Material("vgui/ttt/icons/eating_icon.png")
 
 	function HUDELEMENT:PreInitialize()
 		BaseClass.PreInitialize(self)
