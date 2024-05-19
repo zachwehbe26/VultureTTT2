@@ -81,7 +81,7 @@ function SWEP:PrimaryAttack()
       edata:SetNormal(tr.Normal)
       edata:SetEntity(hitEnt)
 
-      // if the entity he hit was a ragdoll
+      --if the entity he hit was a ragdoll
       if hitEnt:GetClass() == "prop_ragdoll" then
          -- if he hits a body spawn blood
          util.Effect("BloodImpact", edata)
@@ -89,7 +89,7 @@ function SWEP:PrimaryAttack()
          -- if he hits a body it plays a sound to alert those nearby
          EmitSound( "npc/fast_zombie/claw_strike1.wav", self:GetOwner():GetPos() )
       end
-      // if the entity he hit was a player
+      --if the entity he hit was a player
       if hitEnt:IsPlayer() then
          -- if he hits a body spawn blood
          util.Effect("BloodImpact", edata)
@@ -158,10 +158,7 @@ function SWEP:PrimaryAttack()
 		 
 		   --Start the digestion timer
 		   STATUS:AddTimedStatus(self:GetOwner(), "ttt2_vult_cooldown_stat", GetConVar("ttt2_vult_digestion_time"):GetInt(), true)
-         consumeStr = "Bodies Eaten: " .. tostring(VULTURE_DATA.amount_eaten) .. " out of " .. tostring(VULTURE_DATA.amount_to_win)
-         self:GetOwner():PrintMessage( HUD_PRINTTALK, consumeStr)
 		   timer.Create("ttt2_vult_talon_cooldown", GetConVar("ttt2_vult_digestion_time"):GetInt(), 1, function()
-			   self:GetOwner():PrintMessage( HUD_PRINTTALK, "label_vult_consume_cooldown")
 		   end)
 	   end
    end

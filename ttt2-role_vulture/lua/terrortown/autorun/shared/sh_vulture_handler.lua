@@ -32,7 +32,14 @@ end
 
 --Hook that updates the bodies win threshold everytime the vulture eats a body
 if SERVER then
-	hook.Add("UpdateVultureThreshold","ttt_update_vult_threshold",function()
+	hook.Add("TTTBeginRound","ttt_update_vult_threshold",function()
+		--Gets the updated threshold(if it was updated)
+		--VULTURE_DATA is the servers amount, self is the clients amount
 		VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()
+		--Sends to client
+		net.Start("ttt2_role_vulture_update")
+		net.WriteUInt(VULTURE_DATA.amount_eaten, 16)
+		net.WriteUInt(VULTURE_DATA.amount_to_win, 16)
+		net.Broadcast()
 	end)
 end

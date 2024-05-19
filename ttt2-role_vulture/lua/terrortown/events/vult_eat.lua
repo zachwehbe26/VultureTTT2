@@ -17,7 +17,7 @@ end
 --Function that increases bodies consumed
 local function incVultCounter()
 	-- increment eaten bodies
-	hook.Run("UpdateVultureThreshold")
+	--hook.Run("UpdateVultureThreshold")
     VULTURE_DATA:AddEaten()
 	-- warn everyone that a vulture is feasting
     LANG.MsgAll("label_vult_consume_notification", nil, MSG_MSTACK_WARN)
