@@ -1,6 +1,5 @@
 if SERVER then
 	AddCSLuaFile()
-    resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_vult.vmt")
 end
 
 roles.InitCustomTeam(ROLE.name, {

@@ -1,7 +1,5 @@
 if SERVER then
-	AddCSLuaFile()
-	resource.AddFile("materials/vgui/ttt/icon_vult_talon.vmt")
-	
+	AddCSLuaFile()	
 end
 
 SWEP.HoldType               = "knife"
@@ -18,7 +16,7 @@ if CLIENT then
       desc = "Eat bodies to destroy evidence and restore health. Also functions as a weaker version of the Traitor knife."
    };
 
-   SWEP.Icon                = "vgui/ttt/icon_vult_talon"
+   SWEP.Icon                = "vgui/ttt/icon_vult_knife"
    SWEP.IconLetter          = "j"
 end
 
