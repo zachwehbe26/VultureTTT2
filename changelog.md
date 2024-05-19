@@ -10,3 +10,9 @@
 5/17/24
 - The vulture now must wait a certain number of seconds before being able to eat again
    - Informs the vulture when there are ready to eat another body
+
+5/18/24
+- Debugged hud and threshold now accurate but doesn't change!
+
+5/19/24
+- Hud elements now work at full functionality and change win functionality accordingly
