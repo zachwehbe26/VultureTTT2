@@ -5,10 +5,7 @@ VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"
 if CLIENT then
 	net.Receive("ttt2_role_vulture_update", function()
 		VULTURE_DATA.amount_eaten = net.ReadUInt(16)
-<<<<<<< Updated upstream
-=======
 		VULTURE_DATA.amount_to_win = net.ReadUInt(16)
->>>>>>> Stashed changes
 	end)
 end
 
