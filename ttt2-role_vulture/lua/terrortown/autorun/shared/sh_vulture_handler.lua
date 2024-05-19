@@ -15,7 +15,6 @@ end
 
 function VULTURE_DATA:AddEaten()
     self.amount_eaten = self.amount_eaten + 1
-
     --sync to client
     net.Start("ttt2_role_vulture_update")
     net.WriteUInt(self.amount_eaten, 16)
@@ -29,4 +28,11 @@ end
 
 function VULTURE_DATA:GetAmountToWin()
 	return self.amount_to_win
+end
+
+--Hook that updates the bodies win threshold everytime the vulture eats a body
+if SERVER then
+	hook.Add("UpdateVultureThreshold","ttt_update_vult_threshold",function()
+		VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()
+	end)
 end
