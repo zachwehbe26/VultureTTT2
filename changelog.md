@@ -16,3 +16,4 @@
 
 5/19/24
 - Hud elements now work at full functionality and change win functionality accordingly
+- Icons now fully functional. Thanks Milkwater!
