@@ -40,7 +40,7 @@ table.insert(tbl[ROLE_VULTURE], {
 table.insert(tbl[ROLE_VULTURE], {
       cvar = "ttt2_vult_digestion_time",
       slider = true,
-      min = 5,
+      min = 3,
       max = 120,
       decimal = 0,
       desc = "ttt2_vult_digestion_time (def. 15)"

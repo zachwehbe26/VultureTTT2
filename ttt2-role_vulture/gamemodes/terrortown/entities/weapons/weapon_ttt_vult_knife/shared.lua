@@ -152,7 +152,7 @@ function SWEP:PrimaryAttack()
          hitEnt:Remove()
 		 
 		   --runs hook that will increase bodies by one when the vulture consumes one
-		   hook.Run("EVENT_VULT_CONSUME", 1)
+		   hook.Run("EVENT_VULT_CONSUME")
 		 
 		   --Start the digestion timer
 		   STATUS:AddTimedStatus(self:GetOwner(), "ttt2_vult_cooldown_stat", GetConVar("ttt2_vult_digestion_time"):GetInt(), true)
