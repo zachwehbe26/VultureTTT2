@@ -1,10 +1,10 @@
 -- convar for how many bodies he needs to eat
-CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 6, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much damage his knife does
 CreateConVar("ttt2_vult_talon_damage", 34, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for how much health he gains after eating a body
 CreateConVar("ttt2_vult_talon_healing", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
--- convar for his digestion timer -- TODO!!!!!!!!!!!!!!!!!!!!!!!!
+-- convar for his digestion timer
 CreateConVar("ttt2_vult_digestion_time", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
 hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicVultureCVars", function(tbl)
@@ -16,7 +16,7 @@ table.insert(tbl[ROLE_VULTURE], {
       min = 2,
       max = 16,
       decimal = 0,
-      desc = "ttt2_vult_consumed_bodies_win_threshold (def. 6)"
+      desc = "ttt2_vult_consumed_bodies_win_threshold (def. 5)"
 })
 
 table.insert(tbl[ROLE_VULTURE], {
