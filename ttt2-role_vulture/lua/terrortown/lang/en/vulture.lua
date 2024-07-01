@@ -1,3 +1,5 @@
+local L = LANG.GetLanguageTableReference("en")
+
 --Role Language Strings
 L[VULTURE.name] = "Vulture"
 L[VULTURE.defaultTeam] = "Team Vulture"
