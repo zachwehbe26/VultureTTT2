@@ -8,6 +8,8 @@ CreateConVar("ttt2_vult_talon_healing", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 CreateConVar("ttt2_vult_digestion_time", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 -- convar for the vulture's global warning after consuming a body
 CreateConVar("ttt2_vult_eat_warning", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+-- convar for allowing the vulture to eat death faker bodies
+CreateConVar("ttt2_vult_eat_fake", 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
 hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicVultureCVars", function(tbl)
   tbl[ROLE_VULTURE] = tbl[ROLE_VULTURE] or {}
@@ -55,5 +57,14 @@ table.insert(tbl[ROLE_VULTURE], {
 	max = 1,
 	decimal = 0,
 	desc = "ttt2_vult_eat_warning (def. 1)"
+})
+
+table.insert(tbl[ROLE_VULTURE], {
+	cvar = "ttt2_vult_eat_fake",
+	slider = true,
+	min = 0,
+	max = 1,
+	decimal = 0,
+	desc = "ttt2_vult_eat_fake (def. 0)"
 })
 end)

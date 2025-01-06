@@ -24,5 +24,6 @@ L["label_vult_talon_damage"]                  = "How much damage the Vulture Tal
 L["label_vult_talon_healing"]                 = "How much healing the Vulture Talon gives: "
 L["label_vult_digestion_time"]                = "How much time digestion lasts: "
 L["label_ttt2_vult_eat_warning"]              = "Should all players be warned when the vulture eats: "
+L["label_ttt2_vult_eat_fake"]                 = "Can the Vulture eat death faker corpses: "
 -- Alerts
 L["label_vult_consume_notification"]          = "The Vulture has feasted..."

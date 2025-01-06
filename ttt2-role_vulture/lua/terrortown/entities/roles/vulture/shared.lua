@@ -139,5 +139,13 @@ if CLIENT then
 			max = 1,
 			decimal = 0,
 		})
+
+		form:MakeSlider({
+			serverConvar = "ttt2_vult_eat_fake",
+			label = "label_ttt2_vult_eat_fake",
+			min = 0,
+			max = 1,
+			decimal = 0,
+		})
 	end
 end
