@@ -20,7 +20,9 @@ local function incVultCounter()
 	--hook.Run("UpdateVultureThreshold")
     VULTURE_DATA:AddEaten()
 	-- warn everyone that a vulture is feasting
-    LANG.MsgAll("label_vult_consume_notification", nil, MSG_MSTACK_WARN)
+	if GetConVar("ttt2_vult_eat_warning"):GetBool() then
+    	LANG.MsgAll("label_vult_consume_notification", nil, MSG_MSTACK_WARN)
+	end
 	-- if vulture has eaten enough, then he wins
 	if(VULTURE_DATA:GetEatenAmount() >= VULTURE_DATA:GetAmountToWin()) then
         roles.VULTURE.shouldWin = true

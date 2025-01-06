@@ -117,7 +117,7 @@ function SWEP:PrimaryAttack()
       if hitEnt:GetClass() == "prop_ragdoll" and not timer.Exists("ttt2_vult_talon_cooldown") then
          -- make sure the body is that of a player not a map ragdoll or whatever
          local corpsePlayer = CORPSE.GetPlayer(hitEnt)
-		   if not IsValid(corpsePlayer) then
+		   if not ((GetConVar("ttt2_vult_eat_fake"):GetBool() and hitEnt.player_ragdoll) or IsValid(corpsePlayer)) then
             LANG.Msg(owner, "That is not a player ragdoll! You cannot eat this one.", nil, MSG_MSTACK_WARN)
             return
          end
