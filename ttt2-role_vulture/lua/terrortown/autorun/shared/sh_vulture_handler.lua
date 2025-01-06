@@ -1,6 +1,6 @@
 VULTURE_DATA = {}
 VULTURE_DATA.amount_eaten = 0
-VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()
+VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetFloat()
 
 if CLIENT then
 	net.Receive("ttt2_role_vulture_update", function()
@@ -10,20 +10,20 @@ if CLIENT then
 end
 
 if SERVER then
-    util.AddNetworkString("ttt2_role_vulture_update")
+	util.AddNetworkString("ttt2_role_vulture_update")
 end
 
 function VULTURE_DATA:AddEaten()
-    self.amount_eaten = self.amount_eaten + 1
-    --sync to client
-    net.Start("ttt2_role_vulture_update")
-    net.WriteUInt(self.amount_eaten, 16)
-    net.WriteUInt(self.amount_to_win, 16)
-    net.Broadcast()
+	self.amount_eaten = self.amount_eaten + 1
+	--sync to client
+	net.Start("ttt2_role_vulture_update")
+	net.WriteUInt(self.amount_eaten, 16)
+	net.WriteUInt(self.amount_to_win, 16)
+	net.Broadcast()
 end
 
 function VULTURE_DATA:GetEatenAmount()
-    return self.amount_eaten
+	return self.amount_eaten
 end
 
 function VULTURE_DATA:GetAmountToWin()
@@ -35,7 +35,10 @@ if SERVER then
 	hook.Add("TTTBeginRound","ttt_update_vult_threshold",function()
 		--Gets the updated threshold(if it was updated)
 		--VULTURE_DATA is the servers amount, self is the clients amount
-		VULTURE_DATA.amount_to_win = GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetInt()
+
+		VULTURE_DATA.amount_to_win = math.ceil(#util.GetActivePlayers() * GetConVar("ttt2_vult_consumed_bodies_win_threshold"):GetFloat())
+		print(#util.GetActivePlayers())
+		print(VULTURE_DATA.amount_to_win)
 		--Sends to client
 		net.Start("ttt2_role_vulture_update")
 		net.WriteUInt(VULTURE_DATA.amount_eaten, 16)
