@@ -132,7 +132,7 @@ if CLIENT then
 			decimal = 0,
 		})
 
-		form:MakeSlider({
+		form:MakeCheckBox({
 			serverConvar = "ttt2_vult_eat_warning",
 			label = "label_ttt2_vult_eat_warning",
 			min = 0,
@@ -140,7 +140,7 @@ if CLIENT then
 			decimal = 0,
 		})
 
-		form:MakeSlider({
+		form:MakeCheckBox({
 			serverConvar = "ttt2_vult_eat_fake",
 			label = "label_ttt2_vult_eat_fake",
 			min = 0,
