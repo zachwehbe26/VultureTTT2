@@ -16,8 +16,10 @@ The Vulture is also able to see bodies throughout the map, allowing for stealthy
 
 -- Weapon name
 L["vult_knife_name"]                            = "Vulture Talon"
+
 -- Wallhacks
 L["vult_corpse_player"]                         = "{nick}'s delicious corpse."
+
 -- Convar strings
 L["label_vult_consumed_bodies_win_threshold"]   = "How many bodies the Vulture needs to eat to win: "
 L["label_vult_talon_damage"]                    = "How much damage the Vulture Talon does: "
@@ -35,5 +37,9 @@ L["label_vult_consume_notification"]            = "The Vulture has feasted..."
 L["label_vult_not_corpse"]            			= "This is not a player corpse! You cannot eat this one."
 
 -- Event
-L["title_event_vulture_eat"]            = "Vulture Feast"
+L["title_event_vulture_eat"]            = "Vulture feast"
 L["desc_event_vulture_eat"]            = "The Vulture has feasted on a corpse."
+
+-- Scoreboard points
+L["tooltip_vulture_eat_score"] = "Vulture feast: {score}"
+L["vulture_eat_score"] = "Vulture feast:"
