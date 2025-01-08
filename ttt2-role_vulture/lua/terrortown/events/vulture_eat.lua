@@ -1,5 +1,5 @@
 if CLIENT then
-	EVENT.icon = Material("vgui/ttt/vskin/events/vulture_eat")
+	EVENT.icon = Material("vgui/ttt/dynamic/roles/icon_vult")
 	EVENT.title = "title_event_vulture_eat"
 
 	function EVENT:GetText()
