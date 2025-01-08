@@ -10,15 +10,16 @@ roles.InitCustomTeam(ROLE.name, {
 function ROLE:PreInitialize()
 	self.color                      = Color(150, 123, 130, 255)
 
-	self.abbr                       = "vult"
-	self.surviveBonus               = 3
-	self.score.killsMultiplier      = 2
-	self.score.teamKillsMultiplier  = -8
-	self.preventFindCredits         = true
-	self.preventKillCredits         = true
-	self.preventTraitorAloneCredits = true
-	self.preventWin                 = false -- Can he win on his own? true means NO, false means YES
-	self.unknownTeam                = false
+	self.abbr						= "vult"
+	self.score.surviveBonusMultiplier	= 0.5
+	self.score.killsMultiplier		= 2
+	self.score.teamKillsMultiplier	= -8
+	self.score.bodyFoundMuliplier	= 0
+	self.preventFindCredits			= true
+	self.preventKillCredits			= true
+	self.preventTraitorAloneCredits	= true
+	self.preventWin					= false -- Can he win on his own? true means NO, false means YES
+	self.unknownTeam				= false
 
 	self.defaultTeam                = TEAM_VULTURE
 
@@ -95,7 +96,32 @@ if CLIENT then
 	end)
 end
 
--- adding convars to the TTT2 menu
+
+-- -- -- -- --
+-- STATUSES -- 
+-- -- -- -- --
+if CLIENT then
+	hook.Add("Initialize", "ttt2_vult_init", function()
+		STATUS:RegisterStatus("ttt2_vult_cooldown_stat", {
+			hud = Material("vgui/ttt/icons/digesting_icon.png"),
+			type = "bad",
+			name = "label_vult_digestion_cooldown",
+			sidebarDescription = "label_vult_digestion_cooldown_desc"
+		})
+	end)
+end
+
+-- -- -- -- -
+-- CONVARS --
+-- -- -- -- -
+
+CreateConVar("ttt2_vult_consumed_bodies_win_threshold", 0.35, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_talon_damage", 34, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_talon_healing", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_digestion_time", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_eat_warning", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_vult_eat_fake", 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+
 if CLIENT then
 	function ROLE:AddToSettingsMenu(parent)
 		local form = vgui.CreateTTT2Form(parent, "header_roles_additional")
